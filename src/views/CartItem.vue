@@ -1,11 +1,7 @@
 <template>
-<div class='cart-item col'>
+<div class='cart-item col-3'>
     <div :id='cart._id' class="card">
-        <div class="row g-0">
-            <div class="col-4">
                 <img :src='cart.img' alt="">
-            </div>
-            <div class="col-8">
                 <div class="card-body">
                     <h5 class="card-title">{{ cart.title }}</h5>
                     <p class="card-text">{{ cart.description }}</p>
@@ -24,9 +20,7 @@
                         <i class='material-icons'>delete</i>
                     </button>
                 </div>
-            </div>
         </div>
-    </div>
 </div>
 </template>
 
@@ -57,6 +51,7 @@ export default {
                     if (res.status === 200) {
                         console.log(res)
                         document.getElementById(`${id}`).style.display = 'none'
+                        window.location.href='/going-to-cart'
                     }
                 })
         },

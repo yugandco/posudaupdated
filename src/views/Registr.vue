@@ -208,21 +208,14 @@ export default {
                     city: this.user.city,
                     password: this.user.password
                 }
+                console.log(user)
                 axios.post('http://localhost:9991/api/registr', user)
                     .then((res) => {
-                            if (res.status === 200 || res.status === 201) {
-                                console.log(res)
-                                this.$router.push('/login')
-                            }
+                        if (res.status === 200) {
+                            console.log(res)
+                            this.$router.push('/login')
                         }
-                        //, err => {
-                        // if (err.response.status === 400) {
-                        //     document.querySelector('#email').style.borderColor = 'rgb(187, 45, 45)'
-                        //     document.querySelector('.lemail').style.color = 'rgb(187, 45,45)'
-                        //     this.error.email = 'Не забудьте @!'
-                        // }
-                        //}
-                    )
+                    })
             }
         }
     },

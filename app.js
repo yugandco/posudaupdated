@@ -37,7 +37,8 @@ app.use((req, res, next) => {
 let User = require('./models/User');
 let Product = require('./models/Product');
 // @USER REGISTRATION AND LOGIN
-app.post('/api/registr', async (req, res) => {
+app.post('/api/registr', (req, res) => {
+    console.log(req.body)
     const user = new User({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -46,12 +47,13 @@ app.post('/api/registr', async (req, res) => {
         city: req.body.city,
         password: bcrypt.hashSync(req.body.password, 10)
     })
-    await user.save((err) => {
+    user.save(err => {
         if(err){
-            return res.status(400).json({
-                title: 'Пользователь с этим Email-ом уже существует :<',
-                error: 'Попробуйте другой Email...'
-            })
+            return console.log(err)
+            // return res.status(400).json({
+            //     title: 'Пользователь с этим Email-ом уже существует :<',
+            //     error: 'Попробуйте другой Email...'
+            // })
         }
 
         return res.status(200).json({
@@ -200,6 +202,22 @@ app.get('/api/counter/:userid', (req, res) => {
         })
     })
 })
+
+// SEARCH ENGINE
+app.get('/api/catalog/:value', (req, res) => {
+    const regex = new RegExp(escapeRegex(req.params.value), 'gi');
+    Product.find({title :  regex}, (err, products) => {
+        if(err) return console.log(err)
+
+        return res.status(200).json({
+            title: "Result of Searching",
+            products
+        })
+    })
+})
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
 
 const PORT = process.env.PORT || 9991
 

@@ -5,7 +5,10 @@
             <div class="home__block__first__left">
                 <h1>Приветствуем <span class='username'>{{ username }}</span>, мы рады видеть вас!</h1>
                 <p>Здесь вы можете приобрести самые необходимые товары для вашего удобства...</p>
-                <button class='btn btn-warning mt-3'>Начать покупку...</button>
+                <div id='search' class='d-flex w-75'>
+                    <input type="text" class='form-control' placeholder="Начните поиск товара:::" v-model='searchText'>
+                    <button @click='goSearchPage' class='btn btn-warning ml-2'>Поиск</button>
+                </div>
             </div>
             <div class="home__block__first__right">
                 <div class="home__block__first__right__image">
@@ -97,6 +100,7 @@ export default {
     components: {},
     data() {
         return {
+            searchText: '',
             username: '',
             catalogs: [{
                     img: require('../assets/p1.jpg'),
@@ -128,6 +132,12 @@ export default {
         }
         const us = JSON.parse(localStorage.getItem('user'))
         this.username = us.firstname
+    },
+    methods: {
+        goSearchPage() {
+            localStorage.setItem('searchItem', this.searchText)
+            this.$router.push('/catalog')
+        }
     }
 }
 </script>

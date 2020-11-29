@@ -24,7 +24,7 @@
                 </ul>
                 <div class="d-flex">
                     <div class='d-flex' v-if='showDropdown'>
-                        <button @click='goCartMaster' class='btn btn-light float-left'>Корзина <span class='badge bg-primary'>{{ counter }}</span></button>
+                        <button @click='goCartMaster' class='btn btn-light float-left'>Корзина</button>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                 Аккаунт
@@ -97,6 +97,9 @@ export default {
         },
         goCartMaster() {
             this.$router.push('/going-to-cart').catch(() => {})
+        },
+        goAddNewItem() {
+            this.$router.push('/add-new-item')
         }
     },
 }

@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col">{{good}}</div>
             </div>
-            <div class="row row-cols-2 g-4">
+            <div class="row row-cols-2 g-2">
                 <CartItem v-for='(item, index) in carts' :key='index' :cart='item' @buyitem='buyItem(item._id)' />
             </div>
         </div>
