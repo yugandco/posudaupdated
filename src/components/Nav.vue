@@ -92,6 +92,9 @@ export default {
         goHome() {
             this.$router.push('/').catch(() => {})
         },
+        goAbout() {
+            this.$router.push('/about').catch(() => {})
+        },
         goCatalog() {
             this.$router.push('/catalog').catch(() => {})
         },
